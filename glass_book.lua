@@ -1,0 +1,52 @@
+---- ia_crapht/glass_book.lua
+---- The "Market" Book: Heuristic evaluation of economic potential.
+--
+--local modname = minetest.get_current_modname() or "ia_crapht"
+--
+--ia_gutenberg.register_document(modname, "economic_utility_report", {
+--    title = "Market Utility Heuristic",
+--    description = "Analyzes an item's potential economic value based on industrial breadth.",
+--    dynamic = true,
+--
+--    privs = {forensics = true},
+--    craft_privs = {forensics = true},
+--    recipe = ia_gutenberg.get_standard_recipe(ia_gutenberg.recipe_tiers.POWERED, {
+--        "default:diamond", -- tier 4
+--        "default:glass",
+--    }),
+--
+--    icon = "default_glass.png",
+--    
+--    get_text = function(itemstack, user, target)
+--        local item_to_analyze = ""
+--        if target.type == "node" then item_to_analyze = target.name end
+--        
+--        -- Without a target, the Glass book explains how it calculates value
+--        if item_to_analyze == "" then 
+--            return "MARKET EVALUATOR\n" .. string.rep("-", 20) .. 
+--                   "\nPoint at an item to calculate its 'Industrial Breadth Score'.\n\n" ..
+--                   "Score is derived from the total number of recipes this item facilitates." 
+--        end
+--        
+--        local uses = 0
+--        for name, _ in pairs(minetest.registered_items) do
+--            local recipes = minetest.get_all_craft_recipes(name)
+--            if recipes then
+--                for _, r in ipairs(recipes) do
+--                    for _, ing in pairs(r.items or {}) do
+--                        --if ing == item_to_analyze then uses = uses + 1 end
+--			if ia_crapht.is_ingredient_match(item_to_analyze, ing) then
+--			  uses = uses + 1
+--		        end
+--                    end
+--                end
+--            end
+--        end
+--
+--        return "ECONOMIC EVALUATION\n" .. string.rep("=", 30) .. "\n\n" ..
+--               "ITEM: " .. item_to_analyze .. "\n" ..
+--               "INDUSTRIAL BREADTH: " .. uses .. "\n" ..
+--               "UTILITY SCORE: " .. (uses * 10) .. "\n\n" ..
+--               "Heuristic: Items with higher scores are essential infrastructure targets."
+--    end
+--})

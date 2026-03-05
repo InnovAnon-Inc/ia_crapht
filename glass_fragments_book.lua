@@ -1,0 +1,76 @@
+---- ia_crapht/glass_fragments_book.lua
+---- The "Assembly Blueprint": Tells you the exact steps to build a specific target.
+--
+--local modname = minetest.get_current_modname() or "ia_crapht"
+--
+--ia_gutenberg.register_document(modname, "supply_chain_report", {
+--    title = "Industrial Assembly Blueprint",
+--    description = "Step-by-step assembly guide and raw material bill for a target item.",
+--    dynamic = true,
+--
+--    -- Security & Cost
+--    privs = {forensics = true},
+--    craft_privs = {forensics = true},
+--    recipe = ia_gutenberg.get_standard_recipe(ia_gutenberg.recipe_tiers.POWERED, {
+--        -- "default:diamond",        -- tier 4
+--        -- "default:gold_ingot",     -- tier 5
+--        -- "default:obsidian_shard", -- tier 6
+--        "vessels:glass_fragments",
+--    }),
+--
+--    -- Visuals: Shattered glass represents the "broken down" steps of assembly.
+--    icon = "vessels_glass_fragments.png",
+--    
+--    get_text = function(itemstack, user, target)
+--        local item_to_analyze = ""
+--        
+--        -- Logic: Operates on the target item
+--        if target.type == "node" then
+--            item_to_analyze = target.name
+--        elseif target.type == "player" or target.type == "entity" then
+--            local wielded = target.ref:get_wielded_item()
+--            if not wielded:is_empty() then
+--                item_to_analyze = wielded:get_name()
+--            end
+--        end
+--
+--        if item_to_analyze == "" or item_to_analyze == modname .. ":supply_chain_report" then
+--            return "Point at a node or player to generate an assembly blueprint for that item."
+--        end
+--
+--        local text = "ASSEMBLY BLUEPRINT: " .. item_to_analyze .. "\n"
+--        text = text .. string.rep("=", 40) .. "\n\n"
+--
+--        -- 1. Bill of Materials (Raw Leaf Ingredients)
+--        local leafs = ia_crapht.get_leaf_requirements(item_to_analyze)
+--        text = text .. "PHASE 1: RAW MATERIAL GATHERING\n"
+--        text = text .. "------------------------------\n"
+--        
+--        local sorted_leafs = {}
+--        for name, count in pairs(leafs) do table.insert(sorted_leafs, {n=name, c=count}) end
+--        table.sort(sorted_leafs, function(a,b) return a.n < b.n end)
+--
+--        for _, data in ipairs(sorted_leafs) do
+--            text = text .. string.format(" [ ] %-20s (Qty: %d)\n", data.n, data.c)
+--        end
+--
+--        text = text .. "\nPHASE 2: ASSEMBLY STEPS\n"
+--        text = text .. "------------------------------\n"
+--        
+--        -- 2. Multi-step Resolver Logic
+--        -- We get the recursive recipe tree to show what to craft at each step
+--        local steps = ia_crapht.get_assembly_steps(item_to_analyze) -- TODO implement it
+--        if not steps or #steps == 0 then
+--            text = text .. "No intermediate crafting steps found. Item is a raw leaf."
+--        else
+--            for i, step in ipairs(steps) do
+--                text = text .. string.format(" %d. Craft %d x %s\n", i, step.count, step.name)
+--            end
+--        end
+--
+--        text = text .. "\n" .. string.rep("=", 40) .. "\n"
+--        text = text .. "END OF BLUEPRINT"
+--        
+--        return text
+--    end
+--})
