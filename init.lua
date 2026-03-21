@@ -10,6 +10,7 @@ ia_crapht                        = {
 	--cache                    = {},
 	--leafs                    = {},
 }
+ia_crapht.mod                    = 'ia'
 local modpath, S                 = ia_util.loadmod(modname)
 local log                        = ia_util.get_logger(modname)
 local assert                     = ia_util.get_assert(modname)
